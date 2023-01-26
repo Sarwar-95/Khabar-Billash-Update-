@@ -1,11 +1,15 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:khabarbillash1/FirstPage.dart';
 import 'package:khabarbillash1/signup.dart';
 
 class login extends StatelessWidget {
-  const login({Key? key}) : super(key: key);
+const login({Key? key}) : super(key: key);
+
+//----Firebase Log In with Google Account
 
   @override
   Widget build(BuildContext context) {
@@ -213,6 +217,21 @@ class login extends StatelessWidget {
                                 ))
                           ],
                         ),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 80),
+                        child: ElevatedButton(
+                            onPressed: () {},
+                            child: Row(
+                              children: [
+                                FaIcon(
+                                  FontAwesomeIcons.google,
+                                  color: Color.fromARGB(255, 213, 78, 68),
+                                ),
+                                Text("  Sign Up with Google")
+                              ],
+                            )),
                       )
                     ],
                   ),

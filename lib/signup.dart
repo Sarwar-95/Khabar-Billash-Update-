@@ -1,9 +1,16 @@
+import 'dart:developer';
 import 'dart:ui';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class signup extends StatelessWidget {
-  const signup({Key? key}) : super(key: key);
+   signup({Key? key}) : super(key: key);
+  
+   TextEditingController userNameController = TextEditingController();
+   TextEditingController userEmailController = TextEditingController();
+   TextEditingController userPhoneController = TextEditingController();
+   TextEditingController userPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -81,6 +88,7 @@ class signup extends StatelessWidget {
                     children: [
                       //--------------------TextField(1)
                       TextField(
+                        controller: userNameController,
                         style: TextStyle(
                             color: Colors.black, fontWeight: FontWeight.w700),
                         decoration: InputDecoration(
@@ -110,6 +118,7 @@ class signup extends StatelessWidget {
                       ),
                       //--------------------TextField(2)
                       TextField(
+                        controller: userEmailController,
                         style: TextStyle(
                             color: Colors.black, fontWeight: FontWeight.w700),
                         decoration: InputDecoration(
@@ -139,6 +148,7 @@ class signup extends StatelessWidget {
                       ),
                       //--------------------TextField(2)
                       TextField(
+                        controller: userPhoneController,
                         style: TextStyle(
                             color: Colors.black, fontWeight: FontWeight.w700),
                         decoration: InputDecoration(
@@ -167,6 +177,7 @@ class signup extends StatelessWidget {
                       ),
                       //--------------------TextField(2)
                       TextField(
+                        controller: userPasswordController,
                         obscureText: true, // for password
                         style: TextStyle(
                             color: Colors.black, fontWeight: FontWeight.w800),
@@ -219,7 +230,18 @@ class signup extends StatelessWidget {
                       ),
 
                       ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            
+                            var userName =userNameController.text.trim();
+                            var userEmail =userEmailController.text.trim();
+                            var userPhone =userPhoneController.text.trim();
+                            var userPassword =userPasswordController.text.trim();
+
+                            FirebaseAuth.instance.createUserWithEmailAndPassword(email: 
+                              userEmail, password: userPassword).then((value) => 
+                              print('User Created')
+                              );
+                          },
                           style: ElevatedButton.styleFrom(
                               shape: StadiumBorder(),
                               primary: Colors.pink,
